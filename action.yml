@@ -1,0 +1,14 @@
+  
+name: 'ScoreBoard'
+description: 'Generate labels for pull requests'
+branding:
+  icon: 'check-circle'  
+  color: 'red'
+inputs:
+  repo-token:
+      description: 'The GITHUB_TOKEN repo secret'
+  keyword-dict:
+      description: 'A dictionary containing keywords and their corresponding labels'
+runs:
+  using: 'node12'
+  main: 'index.js'
