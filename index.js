@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+const github = require('@actions/github').plugin(require('octokit-pinned-issues'));
 const some_input = core.getInput("some input", { required: true })
 
 
@@ -10,17 +10,36 @@ async function run() {
   const client = new github.getOctokit(token);
   const prNr = github.context.payload.number; // the issue-number of the PR
   const prTitle = github.context.payload.pull_request.title; // the title of the PR
-  const labels = genLabels(prTitle); // generates the labels from the title of  the PR
-  await addLabels(client, prNr, prTitle, labels); // adds the generated labels to the PR
   } catch (error) {
   core.setFailed(error.message);
   console.log(error);
   }
 }
-async function makes_scoreBoard() {
+async function make_scoreBoard(client, owner, repo, title) {
+  await client.octokit.rest.issues.create({
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    title: title,
+  });
+  const issues = await client.octokit.rest.issues.list({
+    filter: 'created'
+  });
+  var id;
+  for (const issue in issues) {
+    if (issue.title === "Scoreboard"){
+      id = issue.id
+    }
+  }
+  await client.octokit.pinIssue({
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    number: id
+  }).then(issue => {});
 }
-async function update_scoreBoard() {
+async function update_scoreBoard(client, owner, repo, id) {
+
 }
+/*
 async function addLabels(client, prNumber, prTitle, labels) {
   // this function adds labels to a PR
   if(labels.length === 0) {
@@ -47,5 +66,5 @@ function genLabels(prTitle){
   }
   return labels;
 }
-
+*/
 run();
