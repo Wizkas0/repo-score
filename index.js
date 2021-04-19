@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const key_word_dict_string = core.getInput("keyword-dict", { required: true })
-const label_dict = JSON.parse(key_word_dict_string); // a dictionary containing the permitted labels and their corresponding keywords/ keyphrases
+const some_input = core.getInput("some input", { required: true })
+
 
 async function run() {
   // this is the main function run by the label-generating action
@@ -17,7 +17,10 @@ async function run() {
   console.log(error);
   }
 }
-
+async function makes_scoreBoard() {
+}
+async function update_scoreBoard() {
+}
 async function addLabels(client, prNumber, prTitle, labels) {
   // this function adds labels to a PR
   if(labels.length === 0) {
