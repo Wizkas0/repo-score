@@ -22,6 +22,7 @@
     "@actions/github": "^4.0.0",
     "@octokit/rest": "^18.5.3",
     "octokit": "^1.0.3",
-    "octokit-pinned-issues": "^1.0.0"
+    "octokit-pinned-issues": "^1.0.0",
+    "plugin": "^0.3.3"
   }
 }
