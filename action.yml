@@ -1,5 +1,5 @@
   
-name: 'ScoreBoard'
+name: 'ScoreBored'
 description: 'Generate labels for pull requests'
 branding:
   icon: 'check-circle'  
@@ -7,8 +7,8 @@ branding:
 inputs:
   repo-token:
       description: 'The GITHUB_TOKEN repo secret'
-  keyword-dict:
-      description: 'A dictionary containing keywords and their corresponding labels'
+  something:
+      description: 'something'
 runs:
   using: 'node12'
   main: 'index.js'
