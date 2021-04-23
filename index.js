@@ -1,5 +1,7 @@
 const core = require('@actions/core');
-const github = require('@actions/github').plugin(require('octokit-pinned-issues'));
+const github = require('@actions/github')
+const Octokit = require('@octokit/rest')
+  .plugin(require('octokit-pinned-issues'))
 const some_input = core.getInput("some input", { required: true })
 
 
