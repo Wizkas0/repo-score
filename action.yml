@@ -1,6 +1,6 @@
   
-name: 'ScoreBored'
-description: 'Generate labels for pull requests'
+name: 'ZcoreBored'
+description: 'A scoreboard'
 branding:
   icon: 'check-circle'  
   color: 'red'
