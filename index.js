@@ -1,5 +1,6 @@
 const core = require('@actions/core')
-const github = require('@actions/github')
+const github = require('@actions/github');
+const { context } = require('@actions/github/lib/utils');
 
 const some_input = core.getInput("some input", { required: false })
 
@@ -12,12 +13,13 @@ async function run() {
   const client = new github.getOctokit(token);
   const prNr = github.context.payload.number; // the issue-number of the PR
   const prTitle = github.context.payload.pull_request.title; // the title of the PR
+  await make_scoreBoard(client, "hello")
   } catch (error) {
   core.setFailed(error.message);
   console.log(error);
   }
 }
-async function make_scoreBoard(client, owner, repo, title) {
+async function make_scoreBoard(client, title) {
   await client.octokit.rest.issues.create({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
