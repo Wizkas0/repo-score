@@ -1,6 +1,5 @@
 const core = require('@actions/core')
 const github = require('@actions/github');
-const { context } = require('@actions/github/lib/utils');
 
 const some_input = core.getInput("some input", { required: false })
 
@@ -25,8 +24,10 @@ async function make_scoreBoard(client, title) {
     repo: github.context.repo.repo,
     title: title,
   });
-  const issues = await client.issues.list({
-  });
+  const issues = await client.issues.listForRepo({
+  owner: github.context.repo.owner,
+  repo: github.context.repo.repo,
+});
   var id;
   for (const issue in issues) {
     if (issue.title === "Scoreboard"){
