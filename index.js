@@ -20,12 +20,12 @@ async function run() {
   }
 }
 async function make_scoreBoard(client, title) {
-  await client.octokit.rest.issues.create({
+  await client.issues.create({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     title: title,
   });
-  const issues = await client.octokit.rest.issues.list({
+  const issues = await client.issues.list({
     filter: 'created'
   });
   var id;
