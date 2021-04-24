@@ -26,7 +26,6 @@ async function make_scoreBoard(client, title) {
     title: title,
   });
   const issues = await client.issues.list({
-    filter: 'created'
   });
   var id;
   for (const issue in issues) {
