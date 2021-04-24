@@ -1,9 +1,8 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
-var plugin = require("plugin")
-const Octokit = require('@octokit/rest')
-  .plugin(require('octokit-pinned-issues'))
+
 const some_input = core.getInput("some input", { required: true })
+
 
 
 async function run() {
@@ -33,14 +32,33 @@ async function make_scoreBoard(client, owner, repo, title) {
       id = issue.id
     }
   }
-  await client.octokit.pinIssue({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
-    number: id
-  }).then(issue => {});
+  const pinned = await pinIssue(client, id)
 }
+
 async function update_scoreBoard(client, owner, repo, id) {
 
+}
+
+const pinMutation = `mutation ($input: PinIssueInput!) {
+  pinIssue(input: $input) {
+    issue {
+      title
+    }
+  }
+}`
+
+async function pinIssue (octokit, id) {
+  const {
+    data: { data: { pinIssue: { issue } } }
+  } = await octokit.request('POST /graphql', {
+    headers: {
+      Accept: 'application/vnd.github.elektra-preview+json'
+    },
+    query: pinMutation,
+    variables: {
+      id: id
+    }
+  })
 }
 /*
 async function addLabels(client, prNumber, prTitle, labels) {
