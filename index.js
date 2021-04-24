@@ -1,7 +1,7 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 
-const some_input = core.getInput("some input", { required: true })
+const some_input = core.getInput("some input", { required: false })
 
 
 
