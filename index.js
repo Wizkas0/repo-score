@@ -50,14 +50,14 @@ async function update_scoreBoard(client, owner, repo, id) {
 async function pinIssue (octokit, id) {
   const pinIssue = `
   mutation comment($id: ID!) {
-    pinIssue(Input: {issueId: $id}) {
+    pinIssue(input: {issueId: $id}) {
       clientMutationId
     }
   }
 `;
   const pinnn = await octokit.graphql(pinIssue, {
     id: id,
-    Input: {issueId: id},
+    input: {issueId: id},
     headers: {
       accept: "application/vnd.github.elektra-preview+json",
     },
