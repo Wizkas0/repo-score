@@ -28,6 +28,7 @@ async function make_scoreBoard(client, title) {
   owner: github.context.repo.owner,
   repo: github.context.repo.repo,
 });
+  console.log(issues)
   var id;
   for (const issue in issues) {
     if (issue.title === "Scoreboard"){
