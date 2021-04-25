@@ -19,11 +19,12 @@ async function run() {
   }
 }
 async function make_scoreBoard(client, title) {
-  await client.issues.create({
+  const {issue} = await client.issues.create({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     title: title,
   });
+  /*
   const issues = await client.issues.listForRepo({
   owner: github.context.repo.owner,
   repo: github.context.repo.repo,
@@ -35,6 +36,8 @@ async function make_scoreBoard(client, title) {
       id = issue.id
     }
   }
+  */
+  const id = issue.node_id
   console.log(id)
   const pinned = await pinIssue(client, id)
 }
