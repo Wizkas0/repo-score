@@ -34,6 +34,7 @@ async function make_scoreBoard(client, title) {
       id = issue.id
     }
   }
+  console.log(id)
   const pinned = await pinIssue(client, id)
 }
 
@@ -49,12 +50,13 @@ async function pinIssue (octokit, id) {
     }
   }
 `;
-  octokit.graphql(pinIssue, {
+  const pinnn = await octokit.graphql(pinIssue, {
     id: id,
     headers: {
       accept: "application/vnd.github.elektra-preview+json",
     },
   });
+  console.log(pinnn)
 }
 
 /*
