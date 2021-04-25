@@ -19,7 +19,7 @@ async function run() {
   }
 }
 async function make_scoreBoard(client, title) {
-  const {issue} = await client.issues.create({
+  const issue = await client.issues.create({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     title: title,
