@@ -41,27 +41,22 @@ async function update_scoreBoard(client, owner, repo, id) {
 
 }
 
-const pinMutation = `mutation ($input: PinIssueInput!) {
-  pinIssue(input: $input) {
-    issue {
-      title
+async function pinIssue (octokit, id) {
+  const pinIssue = `
+  mutation comment($id: ID!) {
+    pinIssue(input: {subjectId: $id}) {
+      clientMutationId
     }
   }
-}`
-
-async function pinIssue (octokit, id) {
-  const {
-    data: { data: { pinIssue: { issue } } }
-  } = await octokit.request('POST /graphql', {
+`;
+  octokit.graphql(pinIssue, {
+    id: id,
     headers: {
-      Accept: 'application/vnd.github.elektra-preview+json'
+      accept: "application/vnd.github.elektra-preview+json",
     },
-    query: pinMutation,
-    variables: {
-      id: id
-    }
-  })
+  });
 }
+
 /*
 async function addLabels(client, prNumber, prTitle, labels) {
   // this function adds labels to a PR
