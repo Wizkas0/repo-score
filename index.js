@@ -38,7 +38,7 @@ async function make_scoreBoard(client, title) {
   }
   */
   console.log(issue)
-  const id = issue.node_id
+  const id = issue.data.node_id
   console.log(id)
   const pinned = await pinIssue(client, id)
 }
