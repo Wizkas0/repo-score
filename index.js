@@ -50,7 +50,7 @@ async function update_scoreBoard(client, owner, repo, id) {
 async function pinIssue (octokit, id) {
   const pinIssue = `
   mutation comment($id: ID!) {
-    pinIssue(PinIssueInput: {issueId: $id}) {
+    pinIssue(Input: {issueId: $id}) {
       clientMutationId
     }
   }
