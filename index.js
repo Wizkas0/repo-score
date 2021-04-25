@@ -57,6 +57,7 @@ async function pinIssue (octokit, id) {
 `;
   const pinnn = await octokit.graphql(pinIssue, {
     id: id,
+    input: {subjectId: id},
     headers: {
       accept: "application/vnd.github.elektra-preview+json",
     },
