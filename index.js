@@ -13,7 +13,7 @@ async function run() {
   const prNr = github.context.payload.number; // the issue-number of the PR
   const prTitle = github.context.payload.pull_request.title; // the title of the PR
   var scoreboard_id;
-  var scoreboard = await octokit.rest.issues.listForRepo({
+  var scoreboard = await client.issues.listForRepo({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     labels: "Scoreboard",
