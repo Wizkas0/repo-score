@@ -12,7 +12,18 @@ async function run() {
   const client = new github.getOctokit(token);
   const prNr = github.context.payload.number; // the issue-number of the PR
   const prTitle = github.context.payload.pull_request.title; // the title of the PR
-  await make_scoreBoard(client, "Scoreboard")
+  var scoreboard_id;
+  var scoreboard = await octokit.rest.issues.listForRepo({
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    labels: "Scoreboard",
+  });
+  if (scoreboard === null){
+    scoreBoard_id = await make_scoreBoard(client, "Scoreboard")
+  }
+  else{
+    scoreBoard_id = scoreboard.data.id
+  }
   } catch (error) {
   core.setFailed(error.message);
   console.log(error);
@@ -24,23 +35,18 @@ async function make_scoreBoard(client, title) {
     repo: github.context.repo.repo,
     title: title,
   });
-  /*
-  const issues = await client.issues.listForRepo({
-  owner: github.context.repo.owner,
-  repo: github.context.repo.repo,
-});
-  console.log(issues)
-  var id;
-  for (const issue in issues) {
-    if (issue.title === "Scoreboard"){
-      id = issue.id
-    }
-  }
-  */
+
   console.log(issue)
   const id = issue.data.node_id
   console.log(id)
+  await client.issues.addLabels({
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    issue_number: prNumber,
+    labels: "Scoreboard"
+  });
   const pinned = await pinIssue(client, id)
+  return issue.data.id
 }
 
 async function update_scoreBoard(client, owner, repo, id) {
@@ -66,21 +72,6 @@ async function pinIssue (octokit, id) {
 }
 
 /*
-async function addLabels(client, prNumber, prTitle, labels) {
-  // this function adds labels to a PR
-  if(labels.length === 0) {
-    console.log("No matching labels found, exiting"); // no keywords/keyphrases were found in the title of the PR
-    return;
-  }
-  console.log("Found matching labels:", labels);
-  await client.issues.addLabels({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
-    issue_number: prNumber,
-    labels: labels
-  });
-}
-
 function genLabels(prTitle){
   // this function generates labels from keywords found in PR-title
   prTitle = prTitle.toLowerCase();
