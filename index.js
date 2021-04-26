@@ -44,7 +44,7 @@ async function make_scoreBoard(client, title) {
   await client.issues.addLabels({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    issue_number: issue_nmbr,
+    issue_number: id,
     labels: "Scoreboard"
   });
   const pinned = await pinIssue(client, id)
