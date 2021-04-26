@@ -16,7 +16,7 @@ async function run() {
   var scoreboard = await client.issues.listForRepo({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    labels: ["Scoreboard"],
+    labels: "Scoreboard",
   });
   console.log(scoreboard);
   if (scoreboard.data.length === 0){
@@ -46,7 +46,7 @@ async function make_scoreBoard(client, title) {
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
     issue_number: issue_nmbr,
-    labels: "Scoreboard"
+    labels: ["Scoreboard"]
   });
   const pinned = await pinIssue(client, id)
   return issue_nmbr
