@@ -16,7 +16,7 @@ async function run() {
   var scoreboard = await client.issues.listForRepo({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    labels: "Scoreboard",
+    labels: ["Scoreboard"],
   });
   console.log(scoreboard);
   if (scoreboard.data.length === 0){
