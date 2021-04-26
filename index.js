@@ -23,7 +23,7 @@ async function run() {
     scoreBoard_id = await make_scoreBoard(client, "Scoreboard")
   }
   else{
-    scoreBoard_id = scoreboard.data.id
+    scoreBoard_id = scoreboard.data.number
   }
   } catch (error) {
   core.setFailed(error.message);
@@ -39,7 +39,7 @@ async function make_scoreBoard(client, title) {
 
   console.log(issue)
   const id = issue.data.node_id
-  const issue_nmbr = issue.data.id
+  const issue_nmbr = issue.data.number
   console.log(issue_nmbr)
   console.log(id)
   await client.issues.addLabels({
