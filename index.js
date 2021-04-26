@@ -18,6 +18,7 @@ async function run() {
     repo: github.context.repo.repo,
     labels: "Scoreboard",
   });
+  console.log(scoreboard);
   if (scoreboard === null){
     scoreBoard_id = await make_scoreBoard(client, "Scoreboard")
   }
