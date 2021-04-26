@@ -19,7 +19,7 @@ async function run() {
     labels: "Scoreboard",
   });
   console.log(scoreboard);
-  if (scoreboard.data.length() === 0){
+  if (scoreboard.data.length === 0){
     scoreBoard_id = await make_scoreBoard(client, "Scoreboard")
   }
   else{
