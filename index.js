@@ -77,14 +77,14 @@ async function parseScoreboard(client, issueNumber) {
 
   const rowRegex = /^\d+\. (.+): (\d+)$/;
   return issue.data.body.split(/\r?\n/).reduce((map, row) => {
-    const match = rowRegex.exec(row);
-    map.set(match[1], parseInt(match[2]));
-    return map;
+    const match = row.match(rowRegex);
+    return match ? map.set(match[1], parseInt(match[2])) : map;
   }, new Map());
 }
 
 async function updateScoreboard(client, issueNumber, newScores, currentScores) {
-  const issueBody = createIssueBody();
+  const updatedScores = calculateScores(currentScores, newScores);
+  const issueBody = createIssueBody(updatedScores);
   await client.issues.update({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
@@ -93,8 +93,24 @@ async function updateScoreboard(client, issueNumber, newScores, currentScores) {
   });
 }
 
-function createIssueBody() {
-  return "1. m4reko: 10\n2. Wizkas0: 5";
+function createIssueBody(scores) {
+  const ingress = "These are the the top contributors of this repository.\n\n";
+  return (
+    ingress +
+    [...scores]
+      .sort(([_a, a], [_b, b]) => b - a)
+      .map(([username, score], index) => `${index + 1}. ${username}: ${score}`)
+      .join("\n")
+  );
+}
+
+function calculateScores(currentScores, newScores) {
+  newScores.forEach(([user, newScore]) => {
+    if (currentScores.has(user))
+      currentScores.set(user, currentScores.get(user) + newScore);
+    else currentScores.set(user, newScore);
+  });
+  return currentScores;
 }
 
 async function pinIssue(octokit, id) {
