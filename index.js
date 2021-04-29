@@ -70,9 +70,11 @@ async function parseScoreboard(client, issueNumber) {
     repo: github.context.repo.repo,
     issue_number: issueNumber,
   });
-  const body = issue.body;
+  console.log("--- Issue:");
+  console.log(issue);
+
   const rowRegex = /^\d+\. (.+): (\d+)$/;
-  return body.split("\n").reducer((map, row) => {
+  return issue.data.body.split("\n").reducer((map, row) => {
     const match = rowRegex.exec(row);
     map.set(match[1], match[2]);
   }, Map());

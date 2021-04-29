@@ -7,8 +7,8 @@ branding:
 inputs:
   repo-token:
       description: 'The GITHUB_TOKEN repo secret'
-  something:
-      description: 'something'
+  new-scores:
+      description: 'names and scores'
 runs:
   using: 'node12'
   main: 'dist/index.js'
