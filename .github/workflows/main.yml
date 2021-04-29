@@ -9,4 +9,4 @@ jobs:
     - uses: Wizkas0/ScoreBoard@main
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        something: "false"
+        new-scores: "{kalle: 100}"
