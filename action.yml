@@ -1,8 +1,8 @@
-  
+
 name: 'ZcoreBored'
 description: 'A scoreboard'
 branding:
-  icon: 'check-circle'  
+  icon: 'check-circle'
   color: 'red'
 inputs:
   repo-token:
@@ -11,4 +11,4 @@ inputs:
       description: 'something'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
