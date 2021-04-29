@@ -10,6 +10,7 @@ async function run() {
       repo: github.context.repo.repo,
       labels: "Scoreboard",
     });
+    console.log("Scoreboard");
     console.log(scoreboard);
     const scoreboardId =
       scoreboard.data.length === 0
