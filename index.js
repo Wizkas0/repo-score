@@ -22,7 +22,9 @@ async function run() {
     console.log("--- Current scores:");
     console.log(currentScores);
 
-    const newScores = JSON.parse(core.getInput("new-scores"));
+    const newScores = new Map(
+      Object.entries(JSON.parse(core.getInput("new-scores")))
+    );
     console.log("--- New scores:");
     console.log(newScores);
 
