@@ -7,7 +7,7 @@ jobs:
   score:
     runs-on: ubuntu-latest
     steps:
-    - uses: Wizkas0/ScoreBoard@main
+    - uses: Wizkas0/ScoreBoard@test
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         something: "false"
