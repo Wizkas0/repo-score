@@ -15,7 +15,7 @@ async function run() {
     const scoreboardId =
       scoreboard.data.length === 0
         ? await makeScoreboard(client, "Scoreboard")
-        : scoreboard.data.number;
+        : scoreboard.data[0].number;
     console.log("scoreboard issue number %s", scoreboardId)
   } catch (error) {
     core.setFailed(error.message);
