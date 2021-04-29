@@ -74,10 +74,11 @@ async function parseScoreboard(client, issueNumber) {
   console.log(issue);
 
   const rowRegex = /^\d+\. (.+): (\d+)$/;
-  return issue.data.body.split("\n").reducer((map, row) => {
+  return issue.data.body.split("\r\n").reduce((map, row) => {
     const match = rowRegex.exec(row);
     map.set(match[1], match[2]);
-  }, Map());
+    return map;
+  }, new Map());
 }
 
 async function updateScoreboard(client, issueNumber, newScores, currentScores) {
