@@ -6056,6 +6056,7 @@ async function run() {
     });
     console.log("--- Scoreboard issues:");
     console.log(scoreboardIssueList);
+
     const scoreboardIssueNumber =
       scoreboardIssueList.data.length === 0
         ? await makeScoreboard(client, "Scoreboard")
@@ -6149,7 +6150,9 @@ function createIssueBody(scores) {
 }
 
 function calculateScores(currentScores, newScores) {
-  newScores.forEach(([user, newScore]) => {
+  console.log("--- New scores:");
+  console.log(newScores);
+  [...newScores].forEach(([user, newScore]) => {
     if (currentScores.has(user))
       currentScores.set(user, currentScores.get(user) + newScore);
     else currentScores.set(user, newScore);
