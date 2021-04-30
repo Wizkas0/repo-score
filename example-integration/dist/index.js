@@ -6057,16 +6057,16 @@ function calculateScores(commitsList) {
   const minWordCount = parseInt(
     core.getInput("min-word-count", { required: true })
   );
-  const scores = commitsList.reduce((scores, commit) => {
+  const scores = commitsList.reduce((scoreAccumulator, commit) => {
     const author = commit.author.username;
     const message = commit.message;
-    const words = message.split(/\w+/);
+    const words = message.split(/\s+/);
     console.log("--- Words:");
     console.log(words);
     const score = words.length - minWordCount;
-    return scores.has(author)
-      ? scores.set(author, scores.get(author) + score)
-      : scores.set(author, score);
+    return scoreAccumulator.has(author)
+      ? scoreAccumulator.set(author, scoreAccumulator.get(author) + score)
+      : scoreAccumulator.set(author, score);
   }, new Map());
   console.log("--- Scores:");
   console.log(scores);
