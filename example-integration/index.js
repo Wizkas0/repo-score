@@ -16,7 +16,7 @@ function calculateScores(commitsList) {
   const scores = commitsList.reduce((scoreAccumulator, commit) => {
     const author = commit.author.username;
     const message = commit.message;
-    const words = message.split(/\w+/);
+    const words = message.split(/\s+/);
     console.log("--- Words:");
     console.log(words);
     const score = words.length - minWordCount;
