@@ -1,2 +1,2 @@
 # ScoreBoard
-[dfg](gtygUntitled-1.jpg)
+![dfg](gtygUntitled-1.jpg)
