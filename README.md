@@ -1,6 +1,5 @@
 # ScoreBoard
-<img src="gtygUntitled-1.jpg"
+<div style="text-align:center"><img src="gtygUntitled-1.jpg"
      alt="Logo"
-     class="center"
-     width="50%"/>
-
+     style=""
+     width="50%"/><div/>
