@@ -6,9 +6,10 @@ jobs:
   score-commits:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Example integration
       id: commit-scores
-      uses: Wizkas0/ScoreBoard@main/example-integration
+      uses: ./example-integration
       with:
         min-word-count: "5"
     - uses: Wizkas0/ScoreBoard@main
