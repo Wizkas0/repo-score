@@ -1,2 +1,5 @@
 # ScoreBoard
-![dfg](gtygUntitled-1.jpg)
+<img src="gtygUntitled-1.jpg"
+     alt="Logo"
+     style="float: center "/>
+
