@@ -6121,8 +6121,9 @@ async function parseScoreboard(client, issueNumber) {
   console.log("--- Issue:");
   console.log(issue);
 
-  const rowRegex = /^\d+\. (.+): (\d+)$/;
-  return issue.data.body.split(/\r?\n/).reduce((map, row) => {
+  const rowRegex = /^\d+\|(.+)\|(\d+)$/;
+  const issueBody = issue.data.body ?? "";
+  return issueBody.split(/\r?\n/).reduce((map, row) => {
     const match = row.match(rowRegex);
     return match ? map.set(match[1], parseInt(match[2])) : map;
   }, new Map());
@@ -6141,11 +6142,13 @@ async function updateScoreboard(client, issueNumber, newScores, currentScores) {
 
 function createIssueBody(scores) {
   const ingress = "These are the the top contributors of this repository.\n\n";
+  const tableHead = "Rank|Username|Score\n---|---|---\n";
   return (
     ingress +
+    tableHead +
     [...scores]
       .sort(([_a, a], [_b, b]) => b - a)
-      .map(([username, score], index) => `${index + 1}. ${username}: ${score}`)
+      .map(([username, score], index) => `${index + 1}|${username}|${score}`)
       .join("\n")
   );
 }
