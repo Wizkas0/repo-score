@@ -13,7 +13,7 @@ jobs:
       with:
         min-word-count: "5"
     - name: Repo Score
-      uses: Wizkas0/ScoreBoard@main
+      uses: Wizkas0/repo-score@main
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         new-scores: ${{ steps.commit-scores.outputs.scores }}

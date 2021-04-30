@@ -1,12 +1,12 @@
 <div align="center">
-<img src="logo.jpg" alt="Logo" width="40%"/>
+<img src="logo.gif" alt="Logo" width="40%"/>
 </div>
 
 # Repo Score
 
 The flexible GitHub contribution scoreboard that motivates open source contributors to excel in any way you want.
 
-ScoreBoard lets you create workflows that integrate your existing actions with the scoreboard functionality with the goal to encourage your contributors to make stellar contributions. The rules on how contributions should be rewarded with points are entirely up to you to decide. ScoreBoard features an extremely simple API that lets you integrate any action either directly, or with some simple conversion.
+Repo Score lets you create workflows that integrate your existing actions with the scoreboard functionality with the goal to encourage your contributors to make stellar contributions. The rules on how contributions should be rewarded with points are entirely up to you to decide. Repo Score features an extremely simple API that lets you integrate any action either directly, or with some simple conversion.
 
 ## Usage
 
@@ -30,7 +30,7 @@ jobs:
       uses: ./example-integration
       with:
         min-word-count: "5"
-    - uses: Wizkas0/ScoreBoard@main
+    - uses: Wizkas0/repo-score@main
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         new-scores: ${{ steps.commit-scores.outputs.scores }}
@@ -48,7 +48,7 @@ the `new-scores` input.
 | Name       | Description                                                                                                  | Required |
 | ---------- | ------------------------------------------------------------------------------------------------------------ | -------- |
 | repo-token | Token necessary to allow the action to make changes in the repo. The pre-defined GITHUB_TOKEN is often used. | Yes      |
-| new-scores | A string formatted as a json object with pairs of names and scores to be added to the scoreboard             | Yes      |
+| new-scores | A string formatted as a json object with pairs of names and scores to be added to the scoreboard.             | Yes      |
 
 ### Example integration
 This repo contains an example scoring action, called commit-scores, that scores users based on the word-counts of their commit-messages.
