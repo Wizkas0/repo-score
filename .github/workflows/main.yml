@@ -3,9 +3,10 @@ name: main
 on: [push]
 
 jobs:
-  score:
+  score-commits:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - uses: ./example-integration
     - uses: Wizkas0/ScoreBoard@main
       with:
