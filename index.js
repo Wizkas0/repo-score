@@ -78,11 +78,13 @@ async function parseScoreboard(client, issueNumber) {
   console.log(issue);
 
   const rowRegex = /^\d+\|(.+)\|(\d+)$/;
-  const issueBody = issue.data.body ?? "";
-  return issueBody.split(/\r?\n/).reduce((map, row) => {
-    const match = row.match(rowRegex);
-    return match ? map.set(match[1], parseInt(match[2])) : map;
-  }, new Map());
+  const issueBody = issue.data.body;
+  return issueBody
+    ? issueBody.split(/\r?\n/).reduce((map, row) => {
+        const match = row.match(rowRegex);
+        return match ? map.set(match[1], parseInt(match[2])) : map;
+      }, new Map())
+    : new Map();
 }
 
 async function updateScoreboard(client, issueNumber, newScores, currentScores) {
