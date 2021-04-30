@@ -6107,7 +6107,7 @@ async function makeScoreboard(client, title) {
 }
 
 async function parseScoreboard(client, issueNumber) {
-  /*
+  /* Syntax of scoreboard:
   These are the top contributors of this repo.
 
   1. m4reko: 10
