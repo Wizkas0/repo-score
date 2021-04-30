@@ -10,6 +10,8 @@ jobs:
     - name: Example integration
       id: commit-scores
       uses: ./example-integration
+      with:
+        min-word-count: "5"
     - uses: Wizkas0/ScoreBoard@main
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}

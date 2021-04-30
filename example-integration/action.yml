@@ -1,8 +1,11 @@
 name: "commit-scores"
-description: "A simple example integration."
+description: "A simple example integration. Takes the word count of commit messages and outputs JSON formatted pairs of usernames and scores."
 branding:
   icon: "check-circle"
   color: "red"
+inputs:
+  min-word-count:
+    description: "The minimum number of words in a commit that is needed to get points"
 outputs:
   scores:
     description: "Name and score pairs as json"
