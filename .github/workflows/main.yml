@@ -12,7 +12,8 @@ jobs:
       uses: ./example-integration
       with:
         min-word-count: "5"
-    - uses: Wizkas0/ScoreBoard@main
+    - name: Repo Score
+      uses: Wizkas0/ScoreBoard@main
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         new-scores: ${{ steps.commit-scores.outputs.scores }}
