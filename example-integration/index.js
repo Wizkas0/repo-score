@@ -19,7 +19,7 @@ function calculateScores(commitsList) {
     const words = message.split(/\s+/);
     console.log("--- Words:");
     console.log(words);
-    const score = words.length - minWordCount;
+    const score = words.length > minWordCount ? words.length - minWordCount : 0;
     return scoreAccumulator.has(author)
       ? scoreAccumulator.set(author, scoreAccumulator.get(author) + score)
       : scoreAccumulator.set(author, score);
