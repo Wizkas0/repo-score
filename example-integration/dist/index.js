@@ -6048,7 +6048,7 @@ const github = __nccwpck_require__(438);
 function run() {
   console.log("--- Context commit length:");
   console.log(github.context.payload.commits.length);
-  const scores = calculateScores(github.context.commits);
+  const scores = calculateScores(github.context.payload.commits);
   core.setOutput("scores", JSON.stringify(Object.fromEntries(scores)));
 }
 run();
