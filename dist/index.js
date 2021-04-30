@@ -6067,9 +6067,10 @@ async function run() {
     console.log("--- Current scores:");
     console.log(currentScores);
 
-    const newScores = new Map(
-      Object.entries(JSON.parse(core.getInput("new-scores")))
-    );
+    const input = core.getInput("new-scores");
+    console.log("--- Input:");
+    console.log(input);
+    const newScores = new Map(Object.entries(JSON.parse(input)));
     console.log("--- New scores:");
     console.log(newScores);
 
