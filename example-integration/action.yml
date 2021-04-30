@@ -1,0 +1,11 @@
+name: "commit-scores"
+description: "A simple example integration."
+branding:
+  icon: "check-circle"
+  color: "red"
+outputs:
+  scores:
+    description: "Name and score pairs as json"
+runs:
+  using: "node12"
+  main: "dist/index.js"

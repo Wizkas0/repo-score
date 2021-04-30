@@ -1,6 +1,5 @@
-
-name: 'ZcoreBored'
-description: 'A scoreboard'
+name: 'scoreboard'
+description: 'The flexible GitHub contribution scoreboard that motivates open source contributors to excel in every way you want.'
 branding:
   icon: 'check-circle'
   color: 'red'
@@ -8,7 +7,7 @@ inputs:
   repo-token:
       description: 'The GITHUB_TOKEN repo secret'
   new-scores:
-      description: 'names and scores'
+      description: 'New scores to be reported, formatted as a JSON map like this: {"{username1}": {score1}, "{username2}": {score2}}'
 runs:
   using: 'node12'
   main: 'dist/index.js'
