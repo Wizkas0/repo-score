@@ -78,7 +78,8 @@ async function parseScoreboard(client, issueNumber) {
   console.log(issue);
 
   const rowRegex = /^\d+\|(.+)\|(\d+)$/;
-  return issue.data.body.split(/\r?\n/).reduce((map, row) => {
+  const issueBody = issue.data.body ?? "";
+  return issueBody.split(/\r?\n/).reduce((map, row) => {
     const match = row.match(rowRegex);
     return match ? map.set(match[1], parseInt(match[2])) : map;
   }, new Map());
