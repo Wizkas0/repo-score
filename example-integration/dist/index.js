@@ -6062,10 +6062,14 @@ function calculateScores(commitsList) {
     const author = commit.author.username;
     const message = commit.message;
     const words = message.split(/\w+/);
+    console.log("--- Words:");
+    console.log(words);
     const score = words.length - minWordCount;
     if (scores.has(author)) scores.set(author, scores.get(author) + score);
     else scores.set(author, score);
   }
+  console.log("--- Scores:");
+  console.log(scores);
   return scores;
 }
 
